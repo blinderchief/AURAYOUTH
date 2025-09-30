@@ -186,27 +186,33 @@ manager = ConnectionManager()
 @app.websocket("/ws/chat/{user_id}")
 async def websocket_chat_endpoint(websocket: WebSocket, user_id: str):
     """WebSocket endpoint for real-time chat."""
+    print(f"WebSocket connection established for user: {user_id}")
     await manager.connect(websocket, user_id)
     try:
         while True:
             # Receive message from client
             data = await websocket.receive_text()
+            print(f"Received message from {user_id}: {data}")
             message_data = json.loads(data)
             
             # Analyze emotion
             emotion = emotion_recog.analyze_text(message_data["message"])
             
             # Get AI response
-            crisis_detected, crisis_type = chatbot.detect_crisis(message_data["message"])
-            response = chatbot.generate_response(
+            crisis_type = chatbot._detect_crisis(message_data["message"])
+            crisis_detected = crisis_type is not None
+            response = await chatbot.generate_response(
                 message_data["message"],
+                user_id,
                 emotion,
                 message_data.get("context", [])
             )
             
             # Prepare response
+            import time
+            bot_message_id = f"{int(time.time() * 1000)}-{hash(response) % 10000}"
             response_data = {
-                "id": message_data.get("id", ""),
+                "id": bot_message_id,
                 "type": "bot",
                 "content": response,
                 "emotion": emotion["label"],
@@ -216,6 +222,7 @@ async def websocket_chat_endpoint(websocket: WebSocket, user_id: str):
                 "timestamp": str(asyncio.get_event_loop().time())
             }
             
+            print(f"Sending response to {user_id}: {response_data}")
             # Send response back to client
             await manager.send_personal_message(json.dumps(response_data), user_id)
             

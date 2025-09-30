@@ -12,14 +12,14 @@ try:
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 except Exception as e:
     print(f"Warning: Password hashing setup failed: {e}")
-    print("Using fallback password handling for demo purposes")
+    print("Using plain text for demo purposes - NOT secure!")
     # Fallback for demo - NOT secure for production
     class FallbackPwdContext:
         def hash(self, password: str) -> str:
-            return f"demo_hash_{password}"  # NOT secure
+            return password  # Plain text
         
         def verify(self, plain_password: str, hashed_password: str) -> bool:
-            return hashed_password == f"demo_hash_{plain_password}"
+            return plain_password == hashed_password
     
     pwd_context = FallbackPwdContext()
 
@@ -53,6 +53,13 @@ fake_users_db = {
         "full_name": "Test User",
         "email": "test@example.com",
         "hashed_password": pwd_context.hash("password"),
+        "disabled": False,
+    },
+    "johndoe": {
+        "username": "johndoe",
+        "full_name": "John Doe",
+        "email": "john@example.com",
+        "hashed_password": pwd_context.hash("secret"),
         "disabled": False,
     }
 }

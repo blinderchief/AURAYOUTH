@@ -1,6 +1,14 @@
 # AuraYouth - Mental Wellness Platform for Youth
 
-A modern, empathetic, and confidential mental wellness platform designed specifically for youth, featuring multimodal AI-powered support with React frontend and FastAPI backend.
+A modern, empathetic, and confidential mental wellness platform designed specifica4. **Configure environment**
+   Edit `.env` file:
+   ```env
+   SECRET_KEY=your-secret-key-change-in-production
+   PORT=8000
+   MONGO_URL=mongodb://localhost:27017
+   DATABASE_NAME=aurayouth
+   GOOGLE_GEMINI_API_KEY=your_google_gemini_api_key
+   ```outh, featuring multimodal AI-powered support with React frontend and FastAPI backend.
 
 ## 🚀 Features
 
@@ -16,11 +24,25 @@ A modern, empathetic, and confidential mental wellness platform designed specifi
 - **Accessibility**: WCAG 2.1 compliant with screen reader support
 - **Multilingual Support**: Available in multiple languages
 
+### AI Integration
+- **Google Gemini AI**: Advanced contextual responses with conversation history (requires API key)
+- **Fallback Responses**: Keyword-based empathetic responses when Gemini is unavailable
+- **Emotion Detection**: Real-time sentiment analysis and mood tracking
+- **Crisis Detection**: Pattern recognition for crisis situations
+- **Contextual Responses**: AI-powered empathetic responses with memory
+- **Digital Twin Learning**: Personalized responses based on conversation history
+
+### Setup Notes
+- **Gemini API**: Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+- **Model Selection**: The current model is set to 'gemini-pro'. If you encounter model errors, check available models in your Google AI console
+- **Fallback Mode**: The system gracefully falls back to keyword-based responses if Gemini is unavailable
+
 ### Technical Features
 - **Real-time Communication**: WebSocket-based chat with instant responses
 - **File Upload Support**: Secure audio/video file processing
 - **Authentication System**: JWT-based secure authentication
 - **Progress Tracking**: Mood trends and conversation history
+- **Conversation Storage**: Persistent chat history for personalized support
 
 ## 🛠️ Technology Stack
 
@@ -37,7 +59,7 @@ A modern, empathetic, and confidential mental wellness platform designed specifi
 - **WebSocket** - Real-time communication
 - **JWT** - JSON Web Token authentication
 - **SQLAlchemy** - Database ORM
-- **OpenAI API** - AI-powered chat responses
+- **Google Generative AI** - Advanced AI-powered chat responses
 - **Librosa** - Audio processing
 - **OpenCV** - Video processing
 
@@ -333,7 +355,7 @@ VITE_API_URL=http://localhost:8000
 
 # Backend
 SECRET_KEY=your-secret-key
-OPENAI_API_KEY=your_openai_key
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key
 DATABASE_URL=your_database_url
 JWT_SECRET_KEY=your_jwt_secret
 ```
