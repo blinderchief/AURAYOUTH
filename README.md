@@ -46,13 +46,14 @@ A modern, empathetic, and confidential mental wellness platform designed specifi
 
 ## 🛠️ Technology Stack
 
-### Frontend (React)
+### Frontend (Next.js)
+- **Next.js 15** - React framework with App Router
 - **React 18** - Modern JavaScript library for building user interfaces
-- **Vite** - Fast build tool and development server
-- **React Router** - Client-side routing
-- **Axios** - HTTP client for API communication
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
 - **Lucide React** - Modern icon library
-- **CSS Modules** - Component-scoped styling
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
 
 ### Backend (FastAPI)
 - **FastAPI** - Modern Python web framework
@@ -67,54 +68,57 @@ A modern, empathetic, and confidential mental wellness platform designed specifi
 
 ```
 AuraYouth/
-├── frontend/                    # React frontend application
-│   ├── public/                  # Static assets
-│   ├── src/
-│   │   ├── components/          # Reusable React components
-│   │   │   ├── Header.jsx       # Navigation header
-│   │   │   ├── Footer.jsx       # Site footer
-│   │   │   └── *.css            # Component styles
-│   │   ├── contexts/            # React contexts
-│   │   │   └── AuthContext.jsx  # Authentication state management
-│   │   ├── pages/               # Page components
-│   │   │   ├── Home.jsx         # Landing page
-│   │   │   ├── Login.jsx        # Authentication page
-│   │   │   ├── Chat.jsx         # Multimodal chat interface
-│   │   │   ├── Profile.jsx      # User profile and settings
-│   │   │   ├── CrisisSupport.jsx # Crisis resources and hotlines
-│   │   │   └── *.css            # Page-specific styles
-│   │   ├── App.jsx              # Main application component
-│   │   ├── App.css              # Global styles
-│   │   └── main.jsx             # Application entry point
-│   ├── package.json             # Frontend dependencies
-│   ├── vite.config.js           # Vite configuration
-│   └── index.html               # HTML template
-├── main.py                      # FastAPI backend application
-├── index.html                   # Legacy HTML frontend (deprecated)
+├── .cph/                        # VS Code extension files
+├── .env                         # Environment configuration
+├── .env.example                 # Environment template
+├── .git/                        # Git repository
+├── .gitignore                   # Git ignore rules
+├── .python-version              # Python version specification
+├── .venv/                       # Python virtual environment
+├── .vscode/                     # VS Code settings
 ├── ai/                          # AI components
-│   ├── chatbot.py               # AI conversation logic
+│   ├── chatbot.py               # AI conversation logic with Gemini integration
 │   ├── emotion_recognition.py   # Multimodal emotion analysis
-│   └── digital_twin.py          # User profiling
+│   └── digital_twin.py          # User profiling and conversation storage
 ├── auth/                        # Authentication
-│   └── security.py               # JWT authentication
+│   └── security.py               # JWT authentication and user management
 ├── database/                    # Database connections
-│   └── connection.py             # Database setup
-├── uploads/                     # File upload directory
-│   ├── audio/                   # Audio file storage
-│   └── video/                   # Video file storage
-├── pyproject.toml               # Backend dependencies
+│   └── connection.py             # MongoDB connection with demo mode fallback
+├── demo_multimodal.py           # Interactive multimodal demo
+├── frontend/                    # Next.js React frontend application
+│   ├── .next/                   # Next.js build files
+│   ├── eslint.config.mjs        # ESLint configuration
+│   ├── index.html               # HTML template
+│   ├── next-env.d.ts            # Next.js TypeScript definitions
+│   ├── next.config.ts           # Next.js configuration
+│   ├── node_modules/            # Node.js dependencies
+│   ├── package-lock.json        # NPM lock file
+│   ├── package.json             # Frontend dependencies
+│   ├── postcss.config.mjs       # PostCSS configuration
+│   ├── public/                  # Static assets
+│   ├── README.md                # Frontend documentation
+│   ├── src/                     # Source code
+│   ├── styles.css               # Global styles
+│   └── tsconfig.json            # TypeScript configuration
+├── main.py                      # FastAPI backend application
+├── process flow.md              # Process documentation
+├── pyproject.toml               # Backend dependencies (uv)
+├── query                        # Query file
 ├── README.md                    # This documentation
-└── .env                         # Configuration
+├── test_multimodal.py           # Multimodal testing
+├── uv.lock                      # uv dependency lock file
+└── __pycache__/                 # Python cache files
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 18+ and npm (for frontend)
-- Python 3.8+ and uv package manager (for backend)
+- Python 3.12+ (for backend)
 - MongoDB (optional - works in demo mode without it)
+- Google Gemini API key (for AI features)
 
-### Frontend Setup (React)
+### Frontend Setup (Next.js)
 
 1. **Navigate to frontend directory**
    ```bash
@@ -132,7 +136,7 @@ AuraYouth/
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:5173`
+   Navigate to `http://localhost:3000`
 
 ### Backend Setup (FastAPI)
 
@@ -143,6 +147,8 @@ AuraYouth/
 
 2. **Install dependencies**
    ```bash
+   pip install -r requirements.txt
+   # or if using uv:
    uv sync
    ```
 
@@ -153,11 +159,14 @@ AuraYouth/
    PORT=8000
    MONGO_URL=mongodb://localhost:27017
    DATABASE_NAME=aurayouth
-   OPENAI_API_KEY=your_openai_api_key
+   GEMINI_API_KEY=your_google_gemini_api_key
+   DEBUG=True
    ```
 
 4. **Start the backend server**
    ```bash
+   python main.py
+   # or with uv:
    uv run python main.py
    ```
 
@@ -169,13 +178,14 @@ AuraYouth/
 ### Frontend Scripts
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
 ### Backend Scripts
-- `uv run python main.py` - Start development server
-- `uv run python test_multimodal.py` - Run multimodal tests
-- `uv run python demo_multimodal.py` - Run interactive demo
+- `python main.py` - Start development server
+- `python demo_multimodal.py` - Run interactive multimodal demo
+- `python test_multimodal.py` - Run multimodal tests
+- `uv run python main.py` - Start with uv (if available)
 
 ## 🎨 Design System
 
@@ -281,11 +291,13 @@ npm run test
 
 ### Backend Testing
 ```bash
+python test_multimodal.py
+# or with uv:
 uv run python test_multimodal.py
 ```
 
 ### Manual Testing
-1. **Web Interface**: Open `http://localhost:5173`
+1. **Web Interface**: Open `http://localhost:3000`
 2. **Login**: Use demo credentials
 3. **Test Chat**: Send messages and upload files
 4. **Test Crisis Support**: Access crisis resources
@@ -351,13 +363,15 @@ docker run -p 8000:8000 aurayouth-backend
 ### Environment Variables
 ```env
 # Frontend
-VITE_API_URL=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8000
 
 # Backend
 SECRET_KEY=your-secret-key
-GOOGLE_GEMINI_API_KEY=your_gemini_api_key
-DATABASE_URL=your_database_url
-JWT_SECRET_KEY=your_jwt_secret
+GEMINI_API_KEY=your_google_gemini_api_key
+MONGO_URL=mongodb://localhost:27017
+DATABASE_NAME=aurayouth
+PORT=8000
+DEBUG=True
 ```
 
 ## 🤝 Contributing
