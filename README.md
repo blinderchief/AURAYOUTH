@@ -1,14 +1,6 @@
 # AuraYouth - Mental Wellness Platform for Youth
 
-A modern, empathetic, and confidential mental wellness platform designed specifica4. **Configure environment**
-   Edit `.env` file:
-   ```env
-   SECRET_KEY=your-secret-key-change-in-production
-   PORT=8000
-   MONGO_URL=mongodb://localhost:27017
-   DATABASE_NAME=aurayouth
-   GOOGLE_GEMINI_API_KEY=your_google_gemini_api_key
-   ```outh, featuring multimodal AI-powered support with React frontend and FastAPI backend.
+A modern, empathetic, and confidential mental wellness platform designed specifically for youth, featuring multimodal AI-powered support with a React frontend and FastAPI backend.
 
 ## 🚀 Features
 
@@ -66,49 +58,37 @@ A modern, empathetic, and confidential mental wellness platform designed specifi
 
 ## 📁 Project Structure
 
+<details>
+<summary><strong>Click to expand a concise project tree</strong></summary>
+
 ```
-AuraYouth/
-├── .cph/                        # VS Code extension files
-├── .env                         # Environment configuration
-├── .env.example                 # Environment template
-├── .git/                        # Git repository
-├── .gitignore                   # Git ignore rules
-├── .python-version              # Python version specification
-├── .venv/                       # Python virtual environment
-├── .vscode/                     # VS Code settings
-├── ai/                          # AI components
-│   ├── chatbot.py               # AI conversation logic with Gemini integration
-│   ├── emotion_recognition.py   # Multimodal emotion analysis
-│   └── digital_twin.py          # User profiling and conversation storage
-├── auth/                        # Authentication
-│   └── security.py               # JWT authentication and user management
-├── database/                    # Database connections
-│   └── connection.py             # MongoDB connection with demo mode fallback
-├── demo_multimodal.py           # Interactive multimodal demo
-├── frontend/                    # Next.js React frontend application
-│   ├── .next/                   # Next.js build files
-│   ├── eslint.config.mjs        # ESLint configuration
-│   ├── index.html               # HTML template
-│   ├── next-env.d.ts            # Next.js TypeScript definitions
-│   ├── next.config.ts           # Next.js configuration
-│   ├── node_modules/            # Node.js dependencies
-│   ├── package-lock.json        # NPM lock file
-│   ├── package.json             # Frontend dependencies
-│   ├── postcss.config.mjs       # PostCSS configuration
-│   ├── public/                  # Static assets
-│   ├── README.md                # Frontend documentation
-│   ├── src/                     # Source code
-│   ├── styles.css               # Global styles
-│   └── tsconfig.json            # TypeScript configuration
-├── main.py                      # FastAPI backend application
-├── process flow.md              # Process documentation
-├── pyproject.toml               # Backend dependencies (uv)
-├── query                        # Query file
-├── README.md                    # This documentation
-├── test_multimodal.py           # Multimodal testing
-├── uv.lock                      # uv dependency lock file
-└── __pycache__/                 # Python cache files
+.
+├─ ai/                      # Core AI features (backend)
+│  ├─ chatbot.py
+│  ├─ digital_twin.py
+│  └─ emotion_recognition.py
+├─ auth/
+│  └─ security.py           # JWT auth helpers
+├─ database/
+│  └─ connection.py         # Mongo connection (demo-safe)
+├─ frontend/                # Next.js app (App Router)
+│  ├─ public/
+│  └─ src/
+│     └─ app/
+│        ├─ chat/
+│        ├─ dashboard/
+│        └─ login/
+├─ demo_multimodal.py       # Interactive multimodal demo
+├─ main.py                  # FastAPI entrypoint
+├─ test_multimodal.py       # Backend quick tests
+├─ pyproject.toml           # Backend deps (uv)
+├─ uv.lock
+├─ query/                   # Sample queries / data
+├─ process flow.md          # Process documentation
+└─ README.md
 ```
+
+</details>
 
 ## 🚀 Getting Started
 
