@@ -368,23 +368,13 @@ DEBUG=True
 - **CSS**: CSS Modules with BEM methodology
 - **Git**: Conventional commits
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
 - **World Health Organization** for design inspiration and mental health guidelines
-- **OpenAI** for AI-powered chat capabilities
+- **GeminiAI** for AI-powered chat capabilities
 - **React Community** for excellent documentation and tools
 - **Mental Health Organizations** for crisis resources and support information
-
-## 📞 Support
-
-For support, please contact:
-- **Email**: support@aurayouth.org
-- **Crisis Hotline**: Available 24/7 through the app
-- **Documentation**: [Full API Documentation](docs/api.md)
 
 ---
 
